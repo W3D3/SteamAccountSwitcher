@@ -1,0 +1,17 @@
+﻿<Window x:Class="SteamAccountSwitcher.AddAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Account" Height="183" Width="330" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Profile name" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538"/>
+        <TextBox x:Name="textBoxProfilename" HorizontalAlignment="Left" Height="23" Margin="92,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214"/>
+        
+        <Label Content="Username" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538"/>
+        <TextBox x:Name="textBoxUsername" HorizontalAlignment="Left" Height="23" Margin="92,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214"/>
+        
+        <Label Content="Password" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538"/>
+        <PasswordBox x:Name="textBoxPassword" HorizontalAlignment="Left" Margin="92,77,0,0" VerticalAlignment="Top" Width="214" Height="23"/>
+        
+        <Button x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Width="296" Height="26" Click="buttonSave_Click"/>
+    </Grid>
+</Window>

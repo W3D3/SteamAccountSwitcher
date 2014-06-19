@@ -1,0 +1,34 @@
+﻿<Window x:Class="SteamAccountSwitcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SteamAccountSwitcher" Height="356" Width="354" ResizeMode="CanMinimize"
+        Closing="Window_Closing">
+    <Grid>
+        <ListView x:Name="listBoxAccounts" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" MouseDoubleClick="listBoxAccounts_MouseDoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Source="steam-icon.png"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="12pt"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Username: " />
+                                    <TextBlock Text="{Binding Username}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="buttonLogout" Content="Steam Logout" HorizontalAlignment="Left" Margin="215,289,0,0" VerticalAlignment="Top" Width="112" Click="buttonLogout_Click" Foreground="#FFDC0000"/>
+        <Button x:Name="buttonAddAccount" Content="Add Account" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top" Width="111" Click="buttonAddAccount_Click"/>
+        <Button x:Name="buttonEditAccount" Content="Edit Account" HorizontalAlignment="Left" Margin="216,35,0,0" VerticalAlignment="Top" Width="111" Click="buttonEditAccount_Click"/>
+        <Button x:Name="buttonDeleteAccount" Content="Delete Account" HorizontalAlignment="Left" Margin="215,60,0,0" VerticalAlignment="Top" Width="111" Click="buttonDeleteAccount_Click"/>
+        
+
+
+
+    </Grid>
+</Window>
