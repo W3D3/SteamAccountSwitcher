@@ -25,7 +25,8 @@ namespace SteamAccountSwitcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<SteamAccount> accounts;
+        //List<SteamAccount> accounts;
+        AccountList accountList;
         public string installPath;
         Steam steam;
         string settingsSave;
@@ -33,17 +34,22 @@ namespace SteamAccountSwitcher
         public MainWindow()
         {
             InitializeComponent();
-            accounts = new List<SteamAccount>();
-            steam = new Steam(@"C:\Program Files (x86)\Steam\");
+            accountList = new AccountList();
+            
             settingsSave = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).TrimStart(@"file:\\".ToCharArray());
-
 
             ReadAccountsFromFile();
 
-            listBoxAccounts.ItemsSource = accounts;
+            steam = new Steam(accountList.InstallDir);
+
+            listBoxAccounts.ItemsSource = accountList.Accounts;
             listBoxAccounts.Items.Refresh();
 
-            steam.InstallDir = SelectSteamFile(steam.InstallDir);
+            if (accountList.InstallDir == "" || (accountList.InstallDir == null))
+            {
+                accountList.InstallDir = SelectSteamFile(accountList.InstallDir);
+            }
+            
         }
 
         private string SelectSteamFile(string initialDirectory)
@@ -67,14 +73,14 @@ namespace SteamAccountSwitcher
             AddAccount newAccWindow = new AddAccount();
             newAccWindow.ShowDialog();
 
-            accounts.Add(newAccWindow.Account);
+            accountList.Accounts.Add(newAccWindow.Account);
             
             listBoxAccounts.Items.Refresh();
         }
 
         public void WriteAccountsToFile()
         {
-            string xmlAccounts = this.ToXML<List<SteamAccount>>(accounts);
+            string xmlAccounts = this.ToXML<AccountList>(accountList);
             System.IO.StreamWriter file = new System.IO.StreamWriter(settingsSave + "\\accounts.ini");
             file.Write(xmlAccounts);
             file.Close();
@@ -85,7 +91,7 @@ namespace SteamAccountSwitcher
             try
             {
                 string text = System.IO.File.ReadAllText(settingsSave + "\\accounts.ini");
-                accounts = FromXML<List<SteamAccount>>(text);
+                accountList = FromXML<AccountList>(text);
             }
             catch(Exception x)
             {
@@ -125,7 +131,7 @@ namespace SteamAccountSwitcher
             AddAccount newAccWindow = new AddAccount((SteamAccount)listBoxAccounts.SelectedItem);
             newAccWindow.ShowDialog();
 
-            accounts[listBoxAccounts.SelectedIndex] = newAccWindow.Account;
+            accountList.Accounts[listBoxAccounts.SelectedIndex] = newAccWindow.Account;
             
             listBoxAccounts.Items.Refresh();
         }
@@ -136,7 +142,7 @@ namespace SteamAccountSwitcher
             MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the'" + selectedAcc.Name + "' Account?", "Delete Account", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);
+                accountList.Accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);
                 listBoxAccounts.Items.Refresh();
             }
             else if (dialogResult == MessageBoxResult.No)
