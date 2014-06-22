@@ -10,15 +10,42 @@ namespace SteamAccountSwitcher
 {
     class Steam
     {
+        public static bool IsSteamRunning()
+        {
+            Process[] pname = Process.GetProcessesByName("steam");
+            if (pname.Length == 0)
+                return false;
+            else
+                return true;
+        }
+
+        public static void KillSteam()
+        {
+            Process [] proc = Process.GetProcessesByName("steam");
+	        proc[0].Kill();
+        }
         public static bool StartSteamAccount(SteamAccount a)
         {
-            LogoutSteam();
-            Process p = new Process();
-            if (File.Exists(@"C:\Steam\Steam.exe"))
+            bool finished = false;
+
+            if(IsSteamRunning())
             {
-                p.StartInfo = new ProcessStartInfo(@"C:\Steam\Steam.exe", a.getStartParameters());
-                p.Start();
-                return true;
+                KillSteam();
+            }
+
+            while (finished == false)
+            {
+                if (IsSteamRunning() == false)
+                {
+                    Process p = new Process();
+                    if (File.Exists(@"C:\Steam\Steam.exe"))
+                    {
+                        p.StartInfo = new ProcessStartInfo(@"C:\Steam\Steam.exe", a.getStartParameters());
+                        p.Start();
+                        finished = true;
+                        return true;
+                    }
+                }
             }
             return false;
         }
