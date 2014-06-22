@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using Microsoft.Win32;
 
 namespace SteamAccountSwitcher
 {
@@ -26,20 +27,39 @@ namespace SteamAccountSwitcher
     {
         List<SteamAccount> accounts;
         public string installPath;
+        Steam steam;
+        string settingsSave;
+
         public MainWindow()
         {
             InitializeComponent();
             accounts = new List<SteamAccount>();
+            steam = new Steam(@"C:\Program Files (x86)\Steam\");
+            settingsSave = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).TrimStart(@"file:\\".ToCharArray());
+
 
             ReadAccountsFromFile();
 
             listBoxAccounts.ItemsSource = accounts;
             listBoxAccounts.Items.Refresh();
+
+            steam.InstallDir = SelectSteamFile(steam.InstallDir);
+        }
+
+        private string SelectSteamFile(string initialDirectory)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter =
+               "Steam Exe (steam.exe)|steam.exe";
+            dialog.InitialDirectory = initialDirectory;
+            dialog.Title = "Select your Steam.exe";
+            return (dialog.ShowDialog() == true)
+               ? dialog.FileName : null;
         }
 
         private void buttonLogout_Click(object sender, RoutedEventArgs e)
         {
-            Steam.LogoutSteam();
+            steam.LogoutSteam();
         }
 
         private void buttonAddAccount_Click(object sender, RoutedEventArgs e)
@@ -55,8 +75,7 @@ namespace SteamAccountSwitcher
         public void WriteAccountsToFile()
         {
             string xmlAccounts = this.ToXML<List<SteamAccount>>(accounts);
-            MessageBox.Show(xmlAccounts);
-            System.IO.StreamWriter file = new System.IO.StreamWriter("H:\\test.ini");
+            System.IO.StreamWriter file = new System.IO.StreamWriter(settingsSave + "\\accounts.ini");
             file.Write(xmlAccounts);
             file.Close();
         }
@@ -65,11 +84,13 @@ namespace SteamAccountSwitcher
         {
             try
             {
-                string text = System.IO.File.ReadAllText("H:\\test.ini");
+                string text = System.IO.File.ReadAllText(settingsSave + "\\accounts.ini");
                 accounts = FromXML<List<SteamAccount>>(text);
             }
-            catch
-            {}
+            catch(Exception x)
+            {
+                MessageBox.Show(x.ToString());
+            }
         }
 
         public static T FromXML<T>(string xml)
@@ -94,7 +115,7 @@ namespace SteamAccountSwitcher
         private void listBoxAccounts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             SteamAccount selectedAcc = (SteamAccount)listBoxAccounts.SelectedItem;
-            Steam.StartSteamAccount(selectedAcc);
+            steam.StartSteamAccount(selectedAcc);
         }
 
 
@@ -111,7 +132,8 @@ namespace SteamAccountSwitcher
 
         private void buttonDeleteAccount_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Sure", "Some Title", MessageBoxButton.YesNo);
+            SteamAccount selectedAcc = (SteamAccount)listBoxAccounts.SelectedItem;
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the'" + selectedAcc.Name + "' Account?", "Delete Account", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
                 accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);

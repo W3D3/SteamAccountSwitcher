@@ -26,6 +26,7 @@
         <Button x:Name="buttonAddAccount" Content="Add Account" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top" Width="111" Click="buttonAddAccount_Click"/>
         <Button x:Name="buttonEditAccount" Content="Edit Account" HorizontalAlignment="Left" Margin="216,35,0,0" VerticalAlignment="Top" Width="111" Click="buttonEditAccount_Click"/>
         <Button x:Name="buttonDeleteAccount" Content="Delete Account" HorizontalAlignment="Left" Margin="215,60,0,0" VerticalAlignment="Top" Width="111" Click="buttonDeleteAccount_Click"/>
+        <Button Content="Steam Installation" HorizontalAlignment="Left" Margin="216,215,0,0" VerticalAlignment="Top" Width="110"/>
 
 
 

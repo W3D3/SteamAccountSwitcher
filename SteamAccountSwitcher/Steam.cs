@@ -10,7 +10,20 @@ namespace SteamAccountSwitcher
 {
     class Steam
     {
-        public static bool IsSteamRunning()
+        string installDir;
+
+        public Steam(string installDir)
+        {
+            this.installDir = installDir;
+        }
+
+        public string InstallDir
+        {
+            get { return installDir; }
+            set { installDir = value; }
+        }
+
+        public bool IsSteamRunning()
         {
             Process[] pname = Process.GetProcessesByName("steam");
             if (pname.Length == 0)
@@ -19,12 +32,13 @@ namespace SteamAccountSwitcher
                 return true;
         }
 
-        public static void KillSteam()
+        public void KillSteam()
         {
             Process [] proc = Process.GetProcessesByName("steam");
 	        proc[0].Kill();
         }
-        public static bool StartSteamAccount(SteamAccount a)
+
+        public bool StartSteamAccount(SteamAccount a)
         {
             bool finished = false;
 
@@ -38,9 +52,9 @@ namespace SteamAccountSwitcher
                 if (IsSteamRunning() == false)
                 {
                     Process p = new Process();
-                    if (File.Exists(@"C:\Steam\Steam.exe"))
+                    if (File.Exists(installDir))
                     {
-                        p.StartInfo = new ProcessStartInfo(@"C:\Steam\Steam.exe", a.getStartParameters());
+                        p.StartInfo = new ProcessStartInfo(installDir, a.getStartParameters());
                         p.Start();
                         finished = true;
                         return true;
@@ -51,12 +65,12 @@ namespace SteamAccountSwitcher
         }
 
 
-        public static bool LogoutSteam()
+        public bool LogoutSteam()
         {
             Process p = new Process();
-            if (File.Exists(@"C:\Steam\Steam.exe"))
+            if (File.Exists(installDir))
             {
-                p.StartInfo = new ProcessStartInfo(@"C:\Steam\Steam.exe", "-shutdown");
+                p.StartInfo = new ProcessStartInfo(installDir, "-shutdown");
                 p.Start();
                 return true;
             }
