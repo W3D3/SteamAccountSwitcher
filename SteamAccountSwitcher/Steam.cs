@@ -60,7 +60,6 @@ namespace SteamAccountSwitcher
                 p.Start();
                 return true;
             }
-
             return false;
             
         }
