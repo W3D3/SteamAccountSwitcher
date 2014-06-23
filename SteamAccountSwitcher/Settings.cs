@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SteamAccountSwitcher
 {
+    //no need for this
     class Settings
     {
         string installDir;
