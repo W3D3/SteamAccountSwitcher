@@ -20,15 +20,16 @@ using Microsoft.Win32;
 
 namespace SteamAccountSwitcher
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /// ****
+    /// SteamAccountSwitcher
+    /// Copyright by Christoph Wedenig
+    /// ****
+    
     public partial class MainWindow : Window
     {
-        //List<SteamAccount> accounts;
         AccountList accountList;
-        public string installPath;
         Steam steam;
+
         string settingsSave;
 
         public MainWindow()
@@ -36,9 +37,17 @@ namespace SteamAccountSwitcher
             InitializeComponent();
             accountList = new AccountList();
             
+            //Get directory of Executable
             settingsSave = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).TrimStart(@"file:\\".ToCharArray());
 
-            ReadAccountsFromFile();
+            try
+            {
+                ReadAccountsFromFile();
+            }
+            catch
+            {
+                //Maybe create file?
+            }
 
             steam = new Steam(accountList.InstallDir);
 
@@ -47,7 +56,12 @@ namespace SteamAccountSwitcher
 
             if (accountList.InstallDir == "" || (accountList.InstallDir == null))
             {
-                accountList.InstallDir = SelectSteamFile(accountList.InstallDir);
+                accountList.InstallDir = SelectSteamFile(@"C:\Program Files (x86)\Steam");
+                if(accountList.InstallDir == null)
+                {
+                    MessageBox.Show("You cannot use SteamAccountSwitcher without selecting your Steam.exe. Program will close now.", "Steam missing", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Close();
+                }
             }
             
         }
@@ -56,9 +70,9 @@ namespace SteamAccountSwitcher
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter =
-               "Steam Exe (steam.exe)|steam.exe";
+               "Steam |steam.exe";
             dialog.InitialDirectory = initialDirectory;
-            dialog.Title = "Select your Steam.exe";
+            dialog.Title = "Select your Steam Installation";
             return (dialog.ShowDialog() == true)
                ? dialog.FileName : null;
         }
@@ -88,15 +102,8 @@ namespace SteamAccountSwitcher
 
         public void ReadAccountsFromFile()
         {
-            try
-            {
-                string text = System.IO.File.ReadAllText(settingsSave + "\\accounts.ini");
-                accountList = FromXML<AccountList>(text);
-            }
-            catch(Exception x)
-            {
-                MessageBox.Show(x.ToString());
-            }
+            string text = System.IO.File.ReadAllText(settingsSave + "\\accounts.ini");
+            accountList = FromXML<AccountList>(text);
         }
 
         public static T FromXML<T>(string xml)

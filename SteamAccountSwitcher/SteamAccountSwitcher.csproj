@@ -60,7 +60,6 @@
     <Compile Include="AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Compile Include="Steam.cs" />
     <Compile Include="SteamAccount.cs" />
     <Page Include="AddAccount.xaml">
