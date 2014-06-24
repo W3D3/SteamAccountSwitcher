@@ -34,7 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Classic.ico</ApplicationIcon>
+    <ApplicationIcon>SteamAccountSwitcher.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -109,14 +112,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Classic.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="steam-ico-main.png" />
     <Resource Include="steam-ico-smurf.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SteamAccountSwitcher.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
