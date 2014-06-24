@@ -49,11 +49,29 @@ namespace SteamAccountSwitcher
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            account.Type = (AccountType)comboBoxType.SelectedItem;
-            account.Name = textBoxProfilename.Text;
-            account.Username = textBoxUsername.Text;
-            account.Password = textBoxPassword.Password;
+            try
+            {
+                account.Type = (AccountType)comboBoxType.SelectedItem;
+                account.Name = textBoxProfilename.Text;
+                account.Username = textBoxUsername.Text;
+                account.Password = textBoxPassword.Password;
+            }
+            catch
+            {
+                account = null;
+            }
             Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (account != null)
+            {
+                if (account.Username == "" || account.Username == null)
+                {
+                    account = null;
+                }
+            }
         }
     }
 }

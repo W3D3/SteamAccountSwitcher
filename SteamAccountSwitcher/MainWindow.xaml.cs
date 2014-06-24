@@ -49,7 +49,7 @@ namespace SteamAccountSwitcher
                 //Maybe create file?
             }
 
-            steam = new Steam(accountList.InstallDir);
+            
 
             listBoxAccounts.ItemsSource = accountList.Accounts;
             listBoxAccounts.Items.Refresh();
@@ -63,6 +63,8 @@ namespace SteamAccountSwitcher
                     Close();
                 }
             }
+
+            steam = new Steam(accountList.InstallDir);
             
         }
 
@@ -87,9 +89,12 @@ namespace SteamAccountSwitcher
             AddAccount newAccWindow = new AddAccount();
             newAccWindow.ShowDialog();
 
-            accountList.Accounts.Add(newAccWindow.Account);
-            
-            listBoxAccounts.Items.Refresh();
+            if (newAccWindow.Account != null)
+            {
+                accountList.Accounts.Add(newAccWindow.Account);
+
+                listBoxAccounts.Items.Refresh();
+            }
         }
 
         public void WriteAccountsToFile()
@@ -138,14 +143,19 @@ namespace SteamAccountSwitcher
             AddAccount newAccWindow = new AddAccount((SteamAccount)listBoxAccounts.SelectedItem);
             newAccWindow.ShowDialog();
 
-            accountList.Accounts[listBoxAccounts.SelectedIndex] = newAccWindow.Account;
-            
-            listBoxAccounts.Items.Refresh();
+            if (newAccWindow.Account.Username != "" && newAccWindow.Account.Password != "")
+            {
+                accountList.Accounts[listBoxAccounts.SelectedIndex] = newAccWindow.Account;
+
+                listBoxAccounts.Items.Refresh();
+            }
         }
 
         private void buttonDeleteAccount_Click(object sender, RoutedEventArgs e)
         {
-            SteamAccount selectedAcc = (SteamAccount)listBoxAccounts.SelectedItem;
+            Button itemClicked = (Button)e.Source;
+
+            SteamAccount selectedAcc = (SteamAccount)itemClicked.DataContext;
             MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the'" + selectedAcc.Name + "' Account?", "Delete Account", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
@@ -161,6 +171,23 @@ namespace SteamAccountSwitcher
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             WriteAccountsToFile();
+        }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Image itemClicked = (Image)e.Source;
+
+            SteamAccount selectedAcc = (SteamAccount)itemClicked.DataContext;
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the'" + selectedAcc.Name + "' Account?", "Delete Account", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                accountList.Accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);
+                listBoxAccounts.Items.Refresh();
+            }
+            else if (dialogResult == MessageBoxResult.No)
+            {
+                //do something else
+            }
         }
 
     }
