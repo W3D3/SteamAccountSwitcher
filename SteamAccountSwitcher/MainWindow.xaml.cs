@@ -96,14 +96,14 @@ namespace SteamAccountSwitcher
         {
             string xmlAccounts = this.ToXML<AccountList>(accountList);
             System.IO.StreamWriter file = new System.IO.StreamWriter(settingsSave + "\\accounts.ini");
-            file.Write(xmlAccounts);
+            file.Write(Crypto.Encrypt(xmlAccounts));
             file.Close();
         }
 
         public void ReadAccountsFromFile()
         {
             string text = System.IO.File.ReadAllText(settingsSave + "\\accounts.ini");
-            accountList = FromXML<AccountList>(text);
+            accountList = FromXML<AccountList>(Crypto.Decrypt(text));
         }
 
         public static T FromXML<T>(string xml)
