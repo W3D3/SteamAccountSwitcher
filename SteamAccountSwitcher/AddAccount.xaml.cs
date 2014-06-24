@@ -31,12 +31,16 @@ namespace SteamAccountSwitcher
         {
             account = new SteamAccount();
             InitializeComponent();
+            comboBoxType.ItemsSource = Enum.GetValues(typeof(AccountType));
         }
 
         public AddAccount(SteamAccount editAccount)
         {
             InitializeComponent();
             account = editAccount;
+            comboBoxType.ItemsSource = Enum.GetValues(typeof(AccountType));
+
+            comboBoxType.SelectedItem = editAccount.Type;
             textBoxProfilename.Text = editAccount.Name;
             textBoxUsername.Text = editAccount.Username;
             textBoxPassword.Password = editAccount.Password;
@@ -45,6 +49,7 @@ namespace SteamAccountSwitcher
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
+            account.Type = (AccountType)comboBoxType.SelectedItem;
             account.Name = textBoxProfilename.Text;
             account.Username = textBoxUsername.Text;
             account.Password = textBoxPassword.Password;

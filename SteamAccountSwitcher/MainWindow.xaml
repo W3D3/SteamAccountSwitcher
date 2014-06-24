@@ -1,15 +1,15 @@
 ﻿<Window x:Class="SteamAccountSwitcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SteamAccountSwitcher" Height="356" Width="354" ResizeMode="CanMinimize"
-        Closing="Window_Closing">
+        Title="SteamAccountSwitcher" Height="297.439" Width="309.356"
+        Closing="Window_Closing" MinWidth="360" MinHeight="360">
     <Grid>
-        <ListView x:Name="listBoxAccounts" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" MouseDoubleClick="listBoxAccounts_MouseDoubleClick">
+        <ListView x:Name="listBoxAccounts" Margin="10,10,136,10" MouseDoubleClick="listBoxAccounts_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Image HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Source="steam-icon.png"/>
+                            <Image HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Source="{Binding Icon}"/>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="12pt"/>
                                 <StackPanel Orientation="Horizontal">
@@ -22,10 +22,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="buttonLogout" Content="Steam Logout" HorizontalAlignment="Left" Margin="215,289,0,0" VerticalAlignment="Top" Width="112" Click="buttonLogout_Click" Foreground="#FFDC0000"/>
-        <Button x:Name="buttonAddAccount" Content="Add Account" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top" Width="111" Click="buttonAddAccount_Click"/>
-        <Button x:Name="buttonEditAccount" Content="Edit Account" HorizontalAlignment="Left" Margin="216,35,0,0" VerticalAlignment="Top" Width="111" Click="buttonEditAccount_Click"/>
-        <Button x:Name="buttonDeleteAccount" Content="Delete Account" HorizontalAlignment="Left" Margin="215,60,0,0" VerticalAlignment="Top" Width="111" Click="buttonDeleteAccount_Click"/>
+        <Button x:Name="buttonLogout" Content="Steam Logout" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="121" Click="buttonLogout_Click" Foreground="#FFDC0000"/>
+        <Button x:Name="buttonAddAccount" Content="Add Account" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="121" Click="buttonAddAccount_Click"/>
+        <Button x:Name="buttonEditAccount" Content="Edit Account" Margin="0,35,10,0" Click="buttonEditAccount_Click" HorizontalAlignment="Right" Width="120" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="buttonDeleteAccount" Content="Delete Account" Margin="0,60,10,0" VerticalAlignment="Top" Click="buttonDeleteAccount_Click" HorizontalAlignment="Right" Width="121"/>
 
 
 

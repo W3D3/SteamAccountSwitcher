@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AccountList.cs" />
+    <Compile Include="AccountType.cs" />
     <Compile Include="AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
     </Compile>
@@ -111,7 +112,8 @@
     <Resource Include="Classic.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="steam-icon.png" />
+    <Resource Include="steam-ico-main.png" />
+    <Resource Include="steam-ico-smurf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
