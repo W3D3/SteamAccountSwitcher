@@ -1,4 +1,4 @@
-#SteamAccountSwitcher
+#Steam Account Switcher
 
 SteamAccountSwitcher is a Windows Application for easy switching between Steam accounts.
 
