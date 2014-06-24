@@ -1,4 +1,5 @@
 SteamAccountSwitcher
 ====================
 
-C# Application for easy switching between Steam accounts,
+C# Application for easy switching between Steam accounts.
+
