@@ -10,9 +10,9 @@ namespace SteamAccountSwitcher
 {
     class Crypto
     {
-        static readonly string PasswordHash = "xXxl33tHax0rPwxXx";
-        static readonly string SaltKey = "iams@Lt3yyy";
-        static readonly string VIKey = "@1B2c3E4e5F6g7R9";
+        static readonly string PasswordHash = "insert password hash";
+        static readonly string SaltKey = "insert salt key";
+        static readonly string VIKey = "@insert vi key";
 
         public static string Encrypt(string plainText)
         {
