@@ -14,8 +14,11 @@ Currently in ALPHA, please report bugs!
 ![alt text](http://puu.sh/9I1E9/aa53d096c5.png, "Screenshot 1")
 
 ##Download
-**[Mediafire](https://www.mediafire.com/?0939vo827svd12h)**
 
+**[Setup (Mediafire)](https://www.mediafire.com/?61a8vxy9bw3de9x)**
+
+[StandAlone (Mediafire)](https://www.mediafire.com/?0939vo827svd12h)
+> Standalone will make problems with downloading on Chrome.
 
 ##To-Do
 
