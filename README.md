@@ -31,6 +31,6 @@ Currently in ALPHA, please report bugs!
 - [SimekOneLove for the account icons](http://www.iconarchive.com/artist/simekonelove.html)
 
 
-##Licence
+##License
 
 [CC Attribution-Share Alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
