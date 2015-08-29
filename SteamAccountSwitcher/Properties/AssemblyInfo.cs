@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SteamAccountSwitcher")]
-[assembly: AssemblyCopyright("Copyright © Christoph Wedenig 2014")]
+[assembly: AssemblyCopyright("Copyright © Christoph Wedenig 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
