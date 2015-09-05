@@ -156,7 +156,7 @@ namespace SteamAccountSwitcher
             Button itemClicked = (Button)e.Source;
 
             SteamAccount selectedAcc = (SteamAccount)itemClicked.DataContext;
-            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the'" + selectedAcc.Name + "' Account?", "Delete Account", MessageBoxButton.YesNo);
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the '" + selectedAcc.Name + "' account?", "Delete Account", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
                 accountList.Accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);
@@ -178,7 +178,7 @@ namespace SteamAccountSwitcher
             Image itemClicked = (Image)e.Source;
 
             SteamAccount selectedAcc = (SteamAccount)itemClicked.DataContext;
-            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the'" + selectedAcc.Name + "' Account?", "Delete Account", MessageBoxButton.YesNo);
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the '" + selectedAcc.Name + "' account?", "Delete Account", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
                 accountList.Accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);
