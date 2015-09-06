@@ -80,7 +80,6 @@
       <DependentUpon>AddAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="Steam.cs" />
     <Compile Include="SteamAccount.cs" />
     <Page Include="AddAccount.xaml">

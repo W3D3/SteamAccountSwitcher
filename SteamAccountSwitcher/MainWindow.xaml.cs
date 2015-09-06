@@ -17,6 +17,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.ComponentModel;
 using Microsoft.Win32;
+using System.Reflection;
 
 namespace SteamAccountSwitcher
 {
@@ -40,12 +41,13 @@ namespace SteamAccountSwitcher
             this.Left = Properties.Settings.Default.Left;
             this.Height = Properties.Settings.Default.Height;
             this.Width = Properties.Settings.Default.Width;
-            // Very quick and dirty - but it does the job
+
             if (Properties.Settings.Default.Maximized)
             {
                 WindowState = WindowState.Maximized;
             }
 
+            this.buttonInfo.ToolTip = "Build Version: " + Assembly.GetEntryAssembly().GetName().Version.ToString();
 
             accountList = new AccountList();
             
