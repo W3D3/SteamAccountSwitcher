@@ -87,6 +87,7 @@ namespace SteamAccountSwitcher
         private void buttonAddAccount_Click(object sender, RoutedEventArgs e)
         {
             AddAccount newAccWindow = new AddAccount();
+            newAccWindow.Owner = this;
             newAccWindow.ShowDialog();
 
             if (newAccWindow.Account != null)
@@ -139,15 +140,18 @@ namespace SteamAccountSwitcher
 
         private void buttonEditAccount_Click(object sender, RoutedEventArgs e)
         {
-
-            AddAccount newAccWindow = new AddAccount((SteamAccount)listBoxAccounts.SelectedItem);
-            newAccWindow.ShowDialog();
-
-            if (newAccWindow.Account.Username != "" && newAccWindow.Account.Password != "")
+            if (listBoxAccounts.SelectedItem != null)
             {
-                accountList.Accounts[listBoxAccounts.SelectedIndex] = newAccWindow.Account;
+                AddAccount newAccWindow = new AddAccount((SteamAccount)listBoxAccounts.SelectedItem);
+                newAccWindow.Owner = this;
+                newAccWindow.ShowDialog();
 
-                listBoxAccounts.Items.Refresh();
+                if (newAccWindow.Account.Username != "" && newAccWindow.Account.Password != "")
+                {
+                    accountList.Accounts[listBoxAccounts.SelectedIndex] = newAccWindow.Account;
+
+                    listBoxAccounts.Items.Refresh();
+                }
             }
         }
 
