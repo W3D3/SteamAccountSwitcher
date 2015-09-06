@@ -35,6 +35,18 @@ namespace SteamAccountSwitcher
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Top = Properties.Settings.Default.Top;
+            this.Left = Properties.Settings.Default.Left;
+            this.Height = Properties.Settings.Default.Height;
+            this.Width = Properties.Settings.Default.Width;
+            // Very quick and dirty - but it does the job
+            if (Properties.Settings.Default.Maximized)
+            {
+                WindowState = WindowState.Maximized;
+            }
+
+
             accountList = new AccountList();
             
             //Get directory of Executable
@@ -101,7 +113,7 @@ namespace SteamAccountSwitcher
         public void WriteAccountsToFile()
         {
             string xmlAccounts = this.ToXML<AccountList>(accountList);
-            System.IO.StreamWriter file = new System.IO.StreamWriter(settingsSave + "\\accounts.ini");
+            StreamWriter file = new System.IO.StreamWriter(settingsSave + "\\accounts.ini");
             file.Write(Crypto.Encrypt(xmlAccounts));
             file.Close();
         }
@@ -155,26 +167,29 @@ namespace SteamAccountSwitcher
             }
         }
 
-        private void buttonDeleteAccount_Click(object sender, RoutedEventArgs e)
-        {
-            Button itemClicked = (Button)e.Source;
-
-            SteamAccount selectedAcc = (SteamAccount)itemClicked.DataContext;
-            MessageBoxResult dialogResult = MessageBox.Show("Are you sure you want to delete the '" + selectedAcc.Name + "' account?", "Delete Account", MessageBoxButton.YesNo);
-            if (dialogResult == MessageBoxResult.Yes)
-            {
-                accountList.Accounts.Remove((SteamAccount)listBoxAccounts.SelectedItem);
-                listBoxAccounts.Items.Refresh();
-            }
-            else if (dialogResult == MessageBoxResult.No)
-            {
-                //do something else
-            }
-        }
-
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             WriteAccountsToFile();
+
+            if (WindowState == WindowState.Maximized)
+            {
+                // Use the RestoreBounds as the current values will be 0, 0 and the size of the screen
+                Properties.Settings.Default.Top = RestoreBounds.Top;
+                Properties.Settings.Default.Left = RestoreBounds.Left;
+                Properties.Settings.Default.Height = RestoreBounds.Height;
+                Properties.Settings.Default.Width = RestoreBounds.Width;
+                Properties.Settings.Default.Maximized = true;
+            }
+            else
+            {
+                Properties.Settings.Default.Top = this.Top;
+                Properties.Settings.Default.Left = this.Left;
+                Properties.Settings.Default.Height = this.Height;
+                Properties.Settings.Default.Width = this.Width;
+                Properties.Settings.Default.Maximized = false;
+            }
+
+            Properties.Settings.Default.Save();
         }
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)

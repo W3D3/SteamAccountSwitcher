@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SteamAccountSwitcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SteamAccountSwitcher" Height="297.439" Width="272"
+        Title="SteamAccountSwitcher" Height="300" Width="280"
         Closing="Window_Closing" MinHeight="360" MinWidth="350">
     <Grid>
         <ListView x:Name="listBoxAccounts" Margin="10" MouseDoubleClick="listBoxAccounts_MouseDoubleClick">
