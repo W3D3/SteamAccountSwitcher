@@ -15,15 +15,13 @@ Currently in ALPHA, please report bugs!
 
 ##Download
 
-**[Setup (Mediafire)](https://www.mediafire.com/?61a8vxy9bw3de9x)**
-
-[StandAlone (Mediafire)](https://www.mediafire.com/?0939vo827svd12h)
-> Standalone will make problems with downloading on Chrome.
+Look into the releases tab and pick the latest installer.
 
 ##To-Do
 
 - Import/Export Steam accounts to file
-- Polish UI
+- Bind Encryption to Hardware to make stealing accounts impossible?
+- Look for updates automatically
 
 
 ##Credit
