@@ -47,12 +47,12 @@ namespace SteamAccountSwitcher
                 WindowState = WindowState.Maximized;
             }
 
-            this.buttonInfo.ToolTip = "Build Version: " + Assembly.GetEntryAssembly().GetName().Version.ToString();
-
             accountList = new AccountList();
             
             //Get directory of Executable
             settingsSave = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).TrimStart(@"file:\\".ToCharArray());
+
+            this.buttonInfo.ToolTip = "Build Version: " + Assembly.GetEntryAssembly().GetName().Version.ToString();
 
             try
             {

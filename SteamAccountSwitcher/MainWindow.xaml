@@ -22,8 +22,6 @@
                         <StackPanel Orientation="Vertical">
                             <Image Source="remove.png" MouseUp="Image_MouseUp"  Width="24px" Height="24px" HorizontalAlignment="Right" >
                             </Image>
-                            <!--<Image Source="remove.png" MouseUp="Image_MouseUp"  Width="24px" Height="24px" HorizontalAlignment="Right" >
-                            </Image>-->
                         </StackPanel>
 
                     </Grid>
