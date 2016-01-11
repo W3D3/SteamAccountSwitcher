@@ -18,6 +18,7 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 using Microsoft.Win32;
 using System.Reflection;
+using AutoUpdaterDotNET;
 
 namespace SteamAccountSwitcher
 {
@@ -79,7 +80,22 @@ namespace SteamAccountSwitcher
             }
 
             steam = new Steam(accountList.InstallDir);
-            
+
+            AutoUpdater.Start("http://wedenig.org/sas/sas_update.xml");
+
+            SteamStatus status = new SteamStatus();
+            if(status.isSteamDown() == true)
+            {
+                gridSteamDown.Visibility = Visibility.Visible;
+                listBoxAccounts.Margin = new System.Windows.Thickness(0, 0, 0, 30);
+                gridButtons.Margin = new System.Windows.Thickness(10, 0, 10, 40);
+            }
+            else
+            {
+                listBoxAccounts.Margin = new System.Windows.Thickness(0, 0, 0, 0);
+                gridButtons.Margin = new System.Windows.Thickness(10, 0, 10, 10);
+            }
+
         }
 
         private string SelectSteamFile(string initialDirectory)

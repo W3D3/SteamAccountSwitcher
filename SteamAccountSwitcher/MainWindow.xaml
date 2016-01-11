@@ -4,43 +4,52 @@
         Title="Steam Account Switcher" Height="300" Width="280"
         Closing="Window_Closing" MinHeight="360" MinWidth="350">
     <Grid>
-        <ListView x:Name="listBoxAccounts" Margin="10" MouseDoubleClick="listBoxAccounts_MouseDoubleClick">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch">
-                        <StackPanel Orientation="Horizontal">
-                            <Image HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Source="{Binding Icon}"/>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="12pt"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Username: " />
-                                    <TextBlock Text="{Binding Username}" />
+        <Grid Margin="10">
+            <ListView x:Name="listBoxAccounts" MouseDoubleClick="listBoxAccounts_MouseDoubleClick" Margin="0">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal">
+                                <Image HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Source="{Binding Icon}"/>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="12pt"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Username: " />
+                                        <TextBlock Text="{Binding Username}" />
+                                    </StackPanel>
+
                                 </StackPanel>
-
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <Image Source="remove.png" MouseUp="Image_MouseUp"  Width="24px" Height="24px" HorizontalAlignment="Right" >
-                            </Image>
-                        </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="remove.png" MouseUp="Image_MouseUp"  Width="24px" Height="24px" HorizontalAlignment="Right" >
+                                </Image>
+                            </StackPanel>
 
-                    </Grid>
-                </DataTemplate>
+                        </Grid>
+                    </DataTemplate>
 
-            </ListView.ItemTemplate>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-        <Button x:Name="buttonAddAccount" Content="Add" Margin="50,0,0,10" VerticalAlignment="Bottom" Click="buttonAddAccount_Click" HorizontalAlignment="Left" Width="35"/>
-        <Button x:Name="buttonEditAccount" Content="Edit" Margin="85,0,0,10" Click="buttonEditAccount_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="35"/>
+            </ListView>
+            
+        </Grid>
+        <Grid x:Name="gridButtons" Height="20" Margin="10,0,10,10" VerticalAlignment="Bottom">
+            <Button x:Name="buttonAddAccount" Content="Add" Margin="0,0,0,0" VerticalAlignment="Bottom" Click="buttonAddAccount_Click" HorizontalAlignment="Left" Width="35"/>
+            <Button x:Name="buttonEditAccount" Content="Edit" Margin="35,0,0,0" Click="buttonEditAccount_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="35"/>
 
-        <Button x:Name="buttonLogout" Content="Steam Logout" Margin="0,0,45,10" Click="buttonLogout_Click" Foreground="#FFDC0000" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86"/>
-        <Button x:Name="buttonInfo" Content="Info" Margin="0,0,10,10"  Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="35"/>
-
+            <Button x:Name="buttonLogout" Content="Steam Logout" Margin="0,0,35,0" Click="buttonLogout_Click" Foreground="#FFDC0000" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86"/>
+            <Button x:Name="buttonInfo" Content="Info" Margin="0,0,0,0"  Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="35"/>
+        </Grid>
+        <Grid x:Name="gridSteamDown" Visibility="Collapsed" HorizontalAlignment="Stretch" Background="#FFFF5858" Height="30" VerticalAlignment="Bottom" >
+            <!--<Rectangle Fill="#FFFF5858" HorizontalAlignment="Left" Height="31" Stroke="Black" VerticalAlignment="Top" Width="322" Margin="-5" />-->
+            <Label x:Name="label" Content="Steam is currently down." HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Height="30" HorizontalAlignment="Left" Width="302"/>
+        </Grid>
 
 
     </Grid>
