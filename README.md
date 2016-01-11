@@ -7,7 +7,7 @@ SteamAccountSwitcher is a Windows Application for easy switching between Steam a
 
 ##Version
 
-Currently in ALPHA, please report bugs!
+See releases for changelogs.
 
 ##Screenshots
 
@@ -15,14 +15,18 @@ Currently in ALPHA, please report bugs!
 
 ##Download
 
-Look into the releases tab and pick the latest installer.
+See releases.
 
 ##To-Do
 
-- Import/Export Steam accounts to file
-- Bind Encryption to Hardware to make stealing accounts impossible?
-- Look for updates automatically
+- Automatic Updating (Done, needs testing)
+- Steam Status check (Done, will be in next release)
+- New Crypto code
+- (optional) Master Password
+- ???
 
+Feel free to open an issue if you have any ideas for features/improvements that you'd like to see.
+I am also looking for a new logo that reflect the "recent" steam color-palette change better than the all black one.
 
 ##Credit
 - [BoneyardBrew for the application icon](http://boneyardbrew.deviantart.com/art/Modern-Steam-Icon-421263397)
