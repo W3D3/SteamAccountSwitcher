@@ -15,7 +15,7 @@ See releases for changelogs.
 
 ##Download
 
-See releases.
+[Latest Release](https://github.com/W3D3/SteamAccountSwitcher/releases/latest)
 
 ##To-Do
 
