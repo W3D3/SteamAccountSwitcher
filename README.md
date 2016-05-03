@@ -1,5 +1,7 @@
 #Steam Account Switcher
 
+[![Join the chat at https://gitter.im/W3D3/SteamAccountSwitcher](https://badges.gitter.im/W3D3/SteamAccountSwitcher.svg)](https://gitter.im/W3D3/SteamAccountSwitcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 SteamAccountSwitcher is a Windows Application for easy switching between Steam accounts.
 
 - Add/Edit/Remove umlimited different Steam accounts and instantly switch between them
