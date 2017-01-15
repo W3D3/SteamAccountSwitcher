@@ -11,8 +11,7 @@ SteamAccountSwitcher is a Windows Application for easy switching between Steam a
 
 See releases for changelogs.
 
-Development is discontinued for version 1. (Working on v2, first release coming end of October 2016.)
-
+Development is discontinued for version 1. (Working on v2, first release coming ~~end of October 2016.~~ I lied. Probably soon though.)
 [New repo](https://github.com/W3D3/SteamAccountSwitcher2) (Looking for testers)
 
 ##Screenshots
